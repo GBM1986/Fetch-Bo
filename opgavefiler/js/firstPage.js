@@ -189,5 +189,3 @@ fetch(userURI)
 /* Opgave 4*/
 // din kode her
 
-let myImage = document.createElement('img');
-    myImage.src = 'https://dog.ceo/api/breeds/image/random';
