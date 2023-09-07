@@ -160,6 +160,34 @@ function setUpStory(language) {
 const userURI = "https://jsonplaceholder.typicode.com/users";
 const myUserlistElement = document.getElementById("userList");
 
-
+fetch(userURI)
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      console.warn('Det gik noget galt');
+    }
+  })
+  .then((data) => {
+    data.forEach((myUser) => { // Use myUser consistently here
+      const userDiv = document.createElement('div'); // Corrected createElement
+      userDiv.innerHTML = `
+        <div class="card">
+          <div class="card-body">
+            <h2>${myUser.name}</h2>
+            <p>Address: ${myUser.address.street} ${myUser.address.suite}<br>
+            Record Number: ${myUser.address.zipcode}<br>
+            City: ${myUser.address.city}</p>
+          </div>
+        </div>`;
+      myUserlistElement.appendChild(userDiv);
+    });
+  })
+  .catch((err) => {
+    console.error("Fetch error:", err);
+  });
 /* Opgave 4*/
 // din kode her
+
+let myImage = document.createElement('img');
+    myImage.src = 'https://dog.ceo/api/breeds/image/random';
